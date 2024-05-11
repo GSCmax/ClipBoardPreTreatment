@@ -9,16 +9,12 @@ namespace ClipBoardPreTreatment.VModels
     public partial class NotifyIconVM : ObservableObject
     {
         [RelayCommand]
-        private void ShowWindow()
+        private void ShowConfigWindow()
         {
             if (Application.Current.MainWindow == null)
             {
                 Application.Current.MainWindow = new ConfigWindow();
                 Application.Current.MainWindow.Show();
-            }
-            else
-            {
-                Application.Current.MainWindow.WindowState = WindowState.Normal;
             }
         }
 

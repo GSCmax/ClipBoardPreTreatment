@@ -9,7 +9,8 @@
         mc:Ignorable="d"
         Title="剪切板文本预处理工具 配置"
         Height="450" Width="800"
-        MinHeight="450" MinWidth="800">
+        MinHeight="450" MinWidth="800"
+        FontSize="14">
 
     <Window.DataContext>
         <vms:ConfigWindowVModel/>
@@ -18,11 +19,11 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleItems}"
                   AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False"
-                  SelectionUnit="FullRow" HeadersVisibility="Column">
+                  SelectionUnit="FullRow" HeadersVisibility="Column" FontSize="12">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="序号" Width="40" IsReadOnly="True" Binding="{Binding RuleIndex}"/>
                 <DataGridCheckBoxColumn Header="启用" Width="40" Binding="{Binding RuleEnabled}"/>
@@ -38,12 +39,12 @@
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Margin="10,0,10,10" Orientation="Vertical">
-                <CheckBox Content="全局启用" VerticalAlignment="Center" IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable, Mode=TwoWay}"/>
-                <TextBlock Text="全局匹配次数: 10" VerticalAlignment="Center"/>
+            <StackPanel Grid.Column="0" Margin="10,0,10,10" Orientation="Vertical" VerticalAlignment="Center">
+                <CheckBox Content="全局启用" IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable, Mode=TwoWay}"/>
+                <TextBlock Text="全局匹配次数: 10"/>
             </StackPanel>
-            <Button Grid.Column="2" Margin="0,0,10,10" Content="取消" Command="{Binding cancelBTNClickCommand}"/>
-            <Button Grid.Column="3" Margin="0,0,10,10" Content="确认" Command="{Binding confirmBTNClickCommand}"/>
+            <Button Grid.Column="2" Margin="0,0,10,10" Content="取消" Command="{Binding CancelBTNClickCommand}"/>
+            <Button Grid.Column="3" Margin="0,0,10,10" Content="确认" Command="{Binding ConfirmBTNClickCommand}"/>
         </Grid>
     </Grid>
 </Window>

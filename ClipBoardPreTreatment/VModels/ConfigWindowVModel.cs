@@ -9,16 +9,18 @@ namespace ClipBoardPreTreatment.VModels
         /// 确认按钮点击
         /// </summary>
         [RelayCommand]
-        private void confirmBTNClick()
+        private void ConfirmBTNClick()
         {
             GlobalDataHelper.Save();
+
+
         }
 
         /// <summary>
         /// 取消按钮点击
         /// </summary>
         [RelayCommand]
-        private void cancelBTNClick()
+        private void CancelBTNClick()
         {
 
         }
