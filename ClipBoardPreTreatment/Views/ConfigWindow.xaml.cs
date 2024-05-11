@@ -1,8 +1,4 @@
-﻿using ClipBoardPreTreatment.Models;
-using System.ComponentModel;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
+﻿using System.Windows;
 
 namespace ClipBoardPreTreatment.Views
 {
@@ -14,24 +10,6 @@ namespace ClipBoardPreTreatment.Views
         public ConfigWindow()
         {
             InitializeComponent();
-        }
-    }
-
-    public class GlobalRuleDetectionCountGetConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            int Count = 0;
-            foreach (var item in (BindingList<RuleItem>)value)
-            {
-                Count += item.RuleDetectionCount;
-            }
-            return Count;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace ClipBoardPreTreatment.Models
         /// 启用
         /// </summary>
         [ObservableProperty]
-        private bool ruleEnabled = true;
+        private bool ruleEnabled = false;
 
         /// <summary>
         /// 匹配次数
