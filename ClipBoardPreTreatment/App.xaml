@@ -18,7 +18,7 @@
             <!--#region NotifyIcon-->
             <tb:TaskbarIcon x:Key="NotifyIcon"
                     IconSource="/ClipBoardPreTreatment;component/Resources/icon.ico"
-                    ToolTipText="剪切板文本预处理工具（双击打开配置窗口，右击打开菜单）"
+                    ToolTipText="剪切板文本预处理工具（双击打开配置管理器，右击打开菜单）"
                     DoubleClickCommand="{Binding ShowConfigWindowCommand}">
                 <tb:TaskbarIcon.DataContext>
                     <vms:NotifyIconVM/>

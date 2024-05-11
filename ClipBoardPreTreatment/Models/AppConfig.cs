@@ -1,8 +1,10 @@
-﻿using System.ComponentModel;
+﻿using ClipBoardPreTreatment.Tools;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel;
 
 namespace ClipBoardPreTreatment.Models
 {
-    internal class AppConfig
+    internal partial class AppConfig : ObservableObject
     {
         /// <summary>
         /// 配置文件存储路径
@@ -12,7 +14,9 @@ namespace ClipBoardPreTreatment.Models
         /// <summary>
         /// 全局启用
         /// </summary>
-        public bool GlobalEnable { get; set; } = true;
+        [ObservableProperty]
+        private bool globalEnable = true;
+        partial void OnGlobalEnableChanged(bool value) => ClipboardHelper.sharpClipboard!.MonitorClipboard = value;
 
         /// <summary>
         /// 规则列表

@@ -5,33 +5,33 @@ namespace ClipBoardPreTreatment.Models
     internal partial class RuleItem : ObservableObject
     {
         /// <summary>
-        /// 序号
-        /// </summary>
-        [ObservableProperty]
-        private int ruleIndex;
-
-        /// <summary>
         /// 启用
         /// </summary>
         [ObservableProperty]
-        private bool ruleEnabled;
+        private bool ruleEnabled = true;
 
         /// <summary>
         /// 匹配次数
         /// </summary>
         [ObservableProperty]
-        private int detectionCount;
+        private int ruleDetectionCount = 0;
 
         /// <summary>
         /// 检测规则
         /// </summary>
         [ObservableProperty]
-        private string? detectionRule;
+        private string? ruleDetectPattern = "";
 
         /// <summary>
-        /// 操作规则
+        /// 替换规则
         /// </summary>
         [ObservableProperty]
-        private string? operationRule;
+        private string? ruleReplacePattern = "";
+
+        /// <summary>
+        /// 替换文本
+        /// </summary>
+        [ObservableProperty]
+        private string? ruleReplaceText = "";
     }
 }

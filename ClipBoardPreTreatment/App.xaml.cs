@@ -13,6 +13,7 @@ namespace ClipBoardPreTreatment
         {
             base.OnStartup(e);
 
+            ClipboardHelper.Init();
             GlobalDataHelper.Init();
 
             TaskbarIcon notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");

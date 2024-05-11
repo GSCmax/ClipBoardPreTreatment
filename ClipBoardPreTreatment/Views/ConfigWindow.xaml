@@ -7,10 +7,14 @@
         xmlns:vms="clr-namespace:ClipBoardPreTreatment.VModels"
         xmlns:tools="clr-namespace:ClipBoardPreTreatment.Tools"
         mc:Ignorable="d"
-        Title="剪切板文本预处理工具 配置"
+        Title="剪切板文本预处理工具 配置管理器"
         Height="450" Width="800"
         MinHeight="450" MinWidth="800"
         FontSize="14">
+
+    <Window.Resources>
+        <local:GlobalRuleDetectionCountGetConverter x:Key="GRDCGC"/>
+    </Window.Resources>
 
     <Window.DataContext>
         <vms:ConfigWindowVModel/>
@@ -22,29 +26,24 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleItems}"
-                  AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False"
+                  AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False"
                   SelectionUnit="FullRow" HeadersVisibility="Column" FontSize="12">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="序号" Width="40" IsReadOnly="True" Binding="{Binding RuleIndex}"/>
-                <DataGridCheckBoxColumn Header="启用" Width="40" Binding="{Binding RuleEnabled}"/>
-                <DataGridTextColumn Header="匹配次数" Width="60" IsReadOnly="True" Binding="{Binding DetectionCount}"/>
-                <DataGridTextColumn Header="匹配（正则）" Width="*" Binding="{Binding DetectionRule}"/>
-                <DataGridTextColumn Header="操作（正则）" Width="*" Binding="{Binding OperationRule}"/>
+                <DataGridCheckBoxColumn Header="启用" Width="40" Binding="{Binding RuleEnabled}" CanUserResize="False"/>
+                <DataGridTextColumn Header="匹配次数" Width="60" Binding="{Binding RuleDetectionCount}" CanUserResize="False" IsReadOnly="True"/>
+                <DataGridTextColumn Header="匹配规则（正则）" Width="3*" Binding="{Binding RuleDetectPattern}"/>
+                <DataGridTextColumn Header="替换规则（正则）" Width="3*" Binding="{Binding RuleReplacePattern}"/>
+                <DataGridTextColumn Header="替换文本" Width="2*" Binding="{Binding RuleReplaceText}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="10,0,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Margin="10,0,10,10" Orientation="Vertical" VerticalAlignment="Center">
-                <CheckBox Content="全局启用" IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable, Mode=TwoWay}"/>
-                <TextBlock Text="全局匹配次数: 10"/>
-            </StackPanel>
-            <Button Grid.Column="2" Margin="0,0,10,10" Content="取消" Command="{Binding CancelBTNClickCommand}"/>
-            <Button Grid.Column="3" Margin="0,0,10,10" Content="确认" Command="{Binding ConfirmBTNClickCommand}"/>
+            <CheckBox Grid.Column="0" Margin="0,1,0,0" Content="全局启用" IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable}"/>
+            <TextBlock Grid.Column="2" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleItems,Converter={StaticResource GRDCGC}, StringFormat=全局匹配次数: {0}}"/>
         </Grid>
     </Grid>
 </Window>

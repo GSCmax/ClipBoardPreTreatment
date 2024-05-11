@@ -4,7 +4,7 @@ using System.IO;
 
 namespace ClipBoardPreTreatment.Tools
 {
-    internal class GlobalDataHelper
+    static class GlobalDataHelper
     {
         /// <summary>
         /// 存储当前App实例的配置信息

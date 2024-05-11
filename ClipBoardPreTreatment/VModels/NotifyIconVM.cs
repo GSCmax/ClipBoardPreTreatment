@@ -19,14 +19,9 @@ namespace ClipBoardPreTreatment.VModels
         }
 
         [RelayCommand]
-        private void ToggleGlobalEnable()
-        {
-            GlobalDataHelper.appConfig!.GlobalEnable = !GlobalDataHelper.appConfig!.GlobalEnable;
-        }
-
-        [RelayCommand]
         private void ExitApplication()
         {
+            GlobalDataHelper.Save();
             Application.Current.Shutdown();
         }
     }
