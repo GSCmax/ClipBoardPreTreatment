@@ -24,8 +24,11 @@ namespace ClipBoardPreTreatment.Models
         private bool globalEnable = true;
         partial void OnGlobalEnableChanged(bool value) => ClipboardHelper.sharpClipboard!.MonitorClipboard = value;
 
+        /// <summary>
+        /// 全局匹配次数
+        /// </summary>
         [ObservableProperty]
-        [JsonIgnore]
+        [property: JsonIgnore]
         private int globalRuleDetectionCount = 0;
 
         /// <summary>
