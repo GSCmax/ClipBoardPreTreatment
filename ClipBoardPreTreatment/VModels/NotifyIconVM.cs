@@ -18,6 +18,16 @@ namespace ClipBoardPreTreatment.VModels
         }
 
         [RelayCommand]
+        private void ShowHistoryWindow()
+        {
+            if (Application.Current.MainWindow == null)
+            {
+                Application.Current.MainWindow = new HistoryWindow();
+                Application.Current.MainWindow.Show();
+            }
+        }
+
+        [RelayCommand]
         private void ExitApplication()
         {
             Application.Current.Shutdown();

@@ -32,6 +32,7 @@ namespace ClipBoardPreTreatment.Tools
                 var tempStr = ((SharpClipboard)sender!).ClipboardText;
                 if (tempStr.Length <= GlobalDataHelper.appConfig!.DetectTextLengthLimit)
                 {
+                    GlobalDataHelper.appConfig!.HistoryItems.Insert(0, tempStr);
                     var firstDetectedRule = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).FirstOrDefault(r => Regex.IsMatch(tempStr, r.RuleReplacePattern!));
                     if (firstDetectedRule != null)
                     {

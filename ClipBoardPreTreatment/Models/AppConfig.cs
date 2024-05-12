@@ -56,7 +56,6 @@ namespace ClipBoardPreTreatment.Models
         /// </summary>
         [property: JsonProperty]
         public BindingList<RuleItem> RuleItems { get; set; } = new BindingList<RuleItem>();
-
         private void RuleItems_ListChanged(object? sender, ListChangedEventArgs e)
         {
             int count = 0;
@@ -66,5 +65,11 @@ namespace ClipBoardPreTreatment.Models
             }
             GlobalRuleDetectionCount = count;
         }
+
+        /// <summary>
+        /// 历史记录列表
+        /// </summary>
+        [property: JsonProperty]
+        public BindingList<string> HistoryItems { get; set; } = new BindingList<string>();
     }
 }
