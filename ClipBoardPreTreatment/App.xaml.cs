@@ -1,5 +1,6 @@
 ﻿using ClipBoardPreTreatment.Tools;
 using Hardcodet.Wpf.TaskbarNotification;
+using System.Diagnostics;
 using System.Windows;
 
 namespace ClipBoardPreTreatment
@@ -13,15 +14,16 @@ namespace ClipBoardPreTreatment
         {
             base.OnStartup(e);
 
+            bool createNew;
+            Process p = Process.GetCurrentProcess();
+            Mutex m = new Mutex(true, p.ProcessName, out createNew);
+            if (!createNew)
+                Application.Current.Shutdown();
+
             ClipboardHelper.Init();
             GlobalDataHelper.Init();
 
             TaskbarIcon notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
-        }
-
-        protected override void OnExit(ExitEventArgs e)
-        {
-            base.OnExit(e);
         }
     }
 }
