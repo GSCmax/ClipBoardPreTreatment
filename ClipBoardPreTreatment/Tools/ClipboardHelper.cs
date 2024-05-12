@@ -30,15 +30,17 @@ namespace ClipBoardPreTreatment.Tools
             if (e.ContentType == ContentTypes.Text)
             {
                 var tempStr = ((SharpClipboard)sender!).ClipboardText;
-                var firstDetectedRule = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).FirstOrDefault(r => Regex.IsMatch(tempStr, r.RuleReplacePattern!));
-
-                if (firstDetectedRule != null)
+                if (tempStr.Length <= GlobalDataHelper.appConfig!.DetectTextLengthLimit)
                 {
-                    firstDetectedRule.RuleDetectionCount++;
-                    string res = Regex.Replace(tempStr, firstDetectedRule.RuleReplacePattern!, firstDetectedRule.RuleReplaceText!);
-                    ((SharpClipboard)sender!).MonitorClipboard = false;
-                    System.Windows.Clipboard.SetText(res);
-                    ((SharpClipboard)sender!).MonitorClipboard = true;
+                    var firstDetectedRule = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).FirstOrDefault(r => Regex.IsMatch(tempStr, r.RuleReplacePattern!));
+                    if (firstDetectedRule != null)
+                    {
+                        firstDetectedRule.RuleDetectionCount++;
+                        string res = Regex.Replace(tempStr, firstDetectedRule.RuleReplacePattern!, firstDetectedRule.RuleReplaceText!);
+                        ((SharpClipboard)sender!).MonitorClipboard = false;
+                        System.Windows.Clipboard.SetText(res);
+                        ((SharpClipboard)sender!).MonitorClipboard = true;
+                    }
                 }
             }
         }

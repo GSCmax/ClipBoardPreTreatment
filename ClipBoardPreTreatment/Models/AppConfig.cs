@@ -6,7 +6,7 @@ using System.ComponentModel;
 namespace ClipBoardPreTreatment.Models
 {
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    internal partial class AppConfig : ObservableObject
+    internal partial class AppConfig : ObservableValidator
     {
         public AppConfig()
         {
@@ -31,6 +31,25 @@ namespace ClipBoardPreTreatment.Models
         /// </summary>
         [ObservableProperty]
         private int globalRuleDetectionCount = 0;
+
+        private const int minimumDetectTextLengthLimit = 10;
+        private const int maximumDetectTextLengthLimit = 2000;
+
+        [ObservableProperty]
+        [property: JsonProperty]
+        [property: System.ComponentModel.DataAnnotations.Range(minimumDetectTextLengthLimit, maximumDetectTextLengthLimit)]
+        private int detectTextLengthLimit = 200;
+        partial void OnDetectTextLengthLimitChanged(int value)
+        {
+            ValidateProperty(value, nameof(DetectTextLengthLimit));
+            if (HasErrors)
+            {
+                if (DetectTextLengthLimit < minimumDetectTextLengthLimit)
+                    DetectTextLengthLimit = minimumDetectTextLengthLimit;
+                if (DetectTextLengthLimit > maximumDetectTextLengthLimit)
+                    DetectTextLengthLimit = maximumDetectTextLengthLimit;
+            }
+        }
 
         /// <summary>
         /// 规则列表

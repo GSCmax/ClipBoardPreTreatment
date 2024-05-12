@@ -57,6 +57,6 @@ namespace ClipBoardPreTreatment.Models
         /// </summary>
         [ObservableProperty]
         [property: JsonProperty]
-        private string? ruleReplaceText = "";
+        private string? ruleReplaceText = "可空";
     }
 }

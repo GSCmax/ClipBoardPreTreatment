@@ -25,14 +25,14 @@
                   AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False"
                   SelectionUnit="FullRow" HeadersVisibility="Column" AlternatingRowBackground="AliceBlue" FontSize="12" BorderBrush="#707070">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="启用" Width="40" Binding="{Binding RuleEnabled, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False"/>
-                <DataGridTextColumn Header="命中" Width="40" Binding="{Binding RuleDetectionCount, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="启用" Width="auto" Binding="{Binding RuleEnabled, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False"/>
+                <DataGridTextColumn Header="命中" Width="auto" Binding="{Binding RuleDetectionCount, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False" IsReadOnly="True"/>
                 <DataGridTextColumn Header="匹配规则（正则）" Width="3*" Binding="{Binding RuleDetectPattern, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
                 <DataGridTextColumn Header="替换规则（正则）" Width="3*" Binding="{Binding RuleReplacePattern, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
                 <DataGridTextColumn Header="替换文本" Width="2*" Binding="{Binding RuleReplaceText, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid Grid.Row="1" Margin="10,0,10,10">
+        <!--<Grid Grid.Row="1" Margin="10,0,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
@@ -40,6 +40,12 @@
             </Grid.ColumnDefinitions>
             <CheckBox Grid.Column="0" Margin="-1,1,0,0" Content="全局启用" IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable}"/>
             <TextBlock Grid.Column="2" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalRuleDetectionCount, StringFormat=全局命中: {0}}"/>
-        </Grid>
+        </Grid>-->
+        <DockPanel Grid.Row="1" Margin="10,0,10,10" LastChildFill="False">
+            <CheckBox DockPanel.Dock="Left" Margin="-1,0,0,0" Content="全局启用" VerticalAlignment="Center" VerticalContentAlignment="Center"  IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable}"/>
+            <TextBlock DockPanel.Dock="Left" Margin="10,0,0,0" Text="匹配文本长度限制" VerticalAlignment="Center"/>
+            <TextBox DockPanel.Dock="Left" Margin="5,0,0,0" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=DetectTextLengthLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" Width="50" Height="18" FontSize="13" BorderBrush="#707070"/>
+            <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalRuleDetectionCount, StringFormat=全局命中: {0}}"/>
+        </DockPanel>
     </Grid>
 </Window>
