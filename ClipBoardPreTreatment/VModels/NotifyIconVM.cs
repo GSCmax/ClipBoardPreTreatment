@@ -1,5 +1,4 @@
-﻿using ClipBoardPreTreatment.Tools;
-using ClipBoardPreTreatment.Views;
+﻿using ClipBoardPreTreatment.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows;
@@ -21,7 +20,6 @@ namespace ClipBoardPreTreatment.VModels
         [RelayCommand]
         private void ExitApplication()
         {
-            GlobalDataHelper.Save();
             Application.Current.Shutdown();
         }
     }

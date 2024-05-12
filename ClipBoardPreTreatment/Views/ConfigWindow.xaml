@@ -8,8 +8,8 @@
         xmlns:tools="clr-namespace:ClipBoardPreTreatment.Tools"
         mc:Ignorable="d"
         Title="剪切板文本预处理工具 配置管理器"
-        Height="450" Width="800"
-        MinHeight="450" MinWidth="800"
+        Height="350" Width="600"
+        MinHeight="350" MinWidth="600"
         FontSize="14">
 
     <Window.DataContext>
@@ -23,13 +23,13 @@
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleItems, UpdateSourceTrigger=PropertyChanged}"
                   AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False"
-                  SelectionUnit="FullRow" HeadersVisibility="Column" FontSize="12">
+                  SelectionUnit="FullRow" HeadersVisibility="Column" AlternatingRowBackground="AliceBlue" FontSize="12" BorderBrush="#707070">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="启用" Width="40" Binding="{Binding RuleEnabled}" CanUserResize="False"/>
-                <DataGridTextColumn Header="匹配次数" Width="60" Binding="{Binding RuleDetectionCount}" CanUserResize="False" IsReadOnly="True"/>
-                <DataGridTextColumn Header="匹配规则（正则）" Width="3*" Binding="{Binding RuleDetectPattern}"/>
-                <DataGridTextColumn Header="替换规则（正则）" Width="3*" Binding="{Binding RuleReplacePattern}"/>
-                <DataGridTextColumn Header="替换文本" Width="2*" Binding="{Binding RuleReplaceText}"/>
+                <DataGridCheckBoxColumn Header="启用" Width="40" Binding="{Binding RuleEnabled, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False"/>
+                <DataGridTextColumn Header="命中" Width="40" Binding="{Binding RuleDetectionCount, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False" IsReadOnly="True"/>
+                <DataGridTextColumn Header="匹配规则（正则）" Width="3*" Binding="{Binding RuleDetectPattern, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <DataGridTextColumn Header="替换规则（正则）" Width="3*" Binding="{Binding RuleReplacePattern, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <DataGridTextColumn Header="替换文本" Width="2*" Binding="{Binding RuleReplaceText, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="1" Margin="10,0,10,10">
@@ -38,8 +38,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <CheckBox Grid.Column="0" Margin="0,1,0,0" Content="全局启用" IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable}"/>
-            <TextBlock Grid.Column="2" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalRuleDetectionCount, StringFormat=全局匹配次数: {0}}"/>
+            <CheckBox Grid.Column="0" Margin="-1,1,0,0" Content="全局启用" IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable}"/>
+            <TextBlock Grid.Column="2" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalRuleDetectionCount, StringFormat=全局命中: {0}}"/>
         </Grid>
     </Grid>
 </Window>

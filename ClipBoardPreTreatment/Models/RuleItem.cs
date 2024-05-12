@@ -1,37 +1,62 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json;
 
 namespace ClipBoardPreTreatment.Models
 {
-    internal partial class RuleItem : ObservableObject
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    internal partial class RuleItem : ObservableValidator
     {
         /// <summary>
         /// 启用
         /// </summary>
         [ObservableProperty]
-        private bool ruleEnabled = false;
+        [property: JsonProperty]
+        private bool ruleEnabled = true;
 
         /// <summary>
         /// 匹配次数
         /// </summary>
         [ObservableProperty]
+        [property: JsonProperty]
         private int ruleDetectionCount = 0;
 
         /// <summary>
         /// 检测规则
         /// </summary>
         [ObservableProperty]
-        private string? ruleDetectPattern = "";
+        [property: JsonProperty]
+        [property: System.ComponentModel.DataAnnotations.Required(ErrorMessage = "此为必填项")]
+        private string? ruleDetectPattern = "必填";
+        partial void OnRuleDetectPatternChanged(string? value)
+        {
+            ValidateProperty(value, nameof(RuleDetectPattern));
+            if (HasErrors)
+            {
+                RuleEnabled = false;
+            }
+        }
 
         /// <summary>
         /// 替换规则
         /// </summary>
         [ObservableProperty]
-        private string? ruleReplacePattern = "";
+        [property: JsonProperty]
+        [property: System.ComponentModel.DataAnnotations.Required(ErrorMessage = "此为必填项")]
+        private string? ruleReplacePattern = "必填";
+        partial void OnRuleReplacePatternChanged(string? value)
+        {
+            ValidateProperty(value, nameof(RuleReplacePattern));
+            if (HasErrors)
+            {
+                RuleEnabled = false;
+            }
+        }
 
         /// <summary>
         /// 替换文本
         /// </summary>
         [ObservableProperty]
+        [property: JsonProperty]
         private string? ruleReplaceText = "";
     }
 }

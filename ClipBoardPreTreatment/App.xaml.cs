@@ -20,10 +20,19 @@ namespace ClipBoardPreTreatment
             if (!createNew)
                 Application.Current.Shutdown();
 
+            //初始化
             ClipboardHelper.Init();
             GlobalDataHelper.Init();
 
             TaskbarIcon notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+
+            //保存配置
+            GlobalDataHelper.Save();
         }
     }
 }
