@@ -29,16 +29,16 @@ namespace ClipBoardPreTreatment.Tools
         {
             if (e.ContentType == ContentTypes.Text)
             {
-                var detectedRules = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).Where(r => Regex.IsMatch(sharpClipboard!.ClipboardText, r.RuleReplacePattern!));
+                var tempStr = ((SharpClipboard)sender!).ClipboardText;
+                var firstDetectedRule = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).FirstOrDefault(r => Regex.IsMatch(tempStr, r.RuleReplacePattern!));
 
-                if (detectedRules.Any())
+                if (firstDetectedRule != null)
                 {
-                    var firstDetectedRule = detectedRules.First();
                     firstDetectedRule.RuleDetectionCount++;
-                    string res = Regex.Replace(sharpClipboard!.ClipboardText, firstDetectedRule.RuleReplacePattern!, firstDetectedRule.RuleReplaceText!);
-                    sharpClipboard.MonitorClipboard = false;
+                    string res = Regex.Replace(tempStr, firstDetectedRule.RuleReplacePattern!, firstDetectedRule.RuleReplaceText!);
+                    ((SharpClipboard)sender!).MonitorClipboard = false;
                     System.Windows.Clipboard.SetText(res);
-                    sharpClipboard.MonitorClipboard = true;
+                    ((SharpClipboard)sender!).MonitorClipboard = true;
                 }
             }
         }
