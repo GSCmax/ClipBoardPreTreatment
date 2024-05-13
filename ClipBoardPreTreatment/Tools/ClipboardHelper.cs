@@ -32,7 +32,7 @@ namespace ClipBoardPreTreatment.Tools
                 var tempStr = ((SharpClipboard)sender!).ClipboardText;
                 if (tempStr.Length <= GlobalDataHelper.appConfig!.DetectTextLengthLimit)
                 {
-                    if (tempStr != GlobalDataHelper.appConfig!.HistoryItems.FirstOrDefault()?.Item1)
+                    if (tempStr != GlobalDataHelper.appHistory!.HistoryItems.FirstOrDefault()?.Item1)
                     {
                         var firstDetectedRule = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).FirstOrDefault(r => Regex.IsMatch(tempStr, r.RuleDetectPattern!));
                         if (firstDetectedRule != null)
@@ -42,29 +42,15 @@ namespace ClipBoardPreTreatment.Tools
                             ((SharpClipboard)sender!).MonitorClipboard = false;
                             System.Windows.Clipboard.SetText(res);
                             ((SharpClipboard)sender!).MonitorClipboard = true;
-                            Save2History(tempStr, firstDetectedRule.RuleDetectPattern!);
+
+                            GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new Tuple<string, string>(tempStr, firstDetectedRule.RuleDetectPattern!));
                         }
                         else
                         {
-                            Save2History(tempStr, "无");
+                            GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new Tuple<string, string>(tempStr, "无"));
                         }
                     }
                 }
-            }
-        }
-
-        private static void Save2History(string text, string pattern)
-        {
-            var temp = new Tuple<string, string>(text, pattern);
-
-            if (GlobalDataHelper.appConfig!.HistoryItems.Count < GlobalDataHelper.appConfig.HistorySaveCountLimit)
-            {
-                GlobalDataHelper.appConfig!.HistoryItems.Insert(0, temp);
-            }
-            else
-            {
-                GlobalDataHelper.appConfig!.HistoryItems.Remove(GlobalDataHelper.appConfig!.HistoryItems.Last());
-                GlobalDataHelper.appConfig!.HistoryItems.Insert(0, temp);
             }
         }
     }

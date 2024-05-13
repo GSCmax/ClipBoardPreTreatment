@@ -12,7 +12,12 @@ namespace ClipBoardPreTreatment.Tools
         public static AppConfig? appConfig;
 
         /// <summary>
-        /// 获取本地存储的配置信息
+        /// 存储当前App实例的历史记录
+        /// </summary>
+        public static AppHistory? appHistory;
+
+        /// <summary>
+        /// 获取本地存储的配置信息与历史记录
         /// </summary>
         public static void Init()
         {
@@ -28,6 +33,19 @@ namespace ClipBoardPreTreatment.Tools
                 }
             else
                 appConfig = new AppConfig();
+
+            if (File.Exists(AppHistory.SavePath))
+                try
+                {
+                    var json = File.ReadAllText(AppHistory.SavePath);
+                    appHistory = (string.IsNullOrEmpty(json) ? new AppHistory() : JsonConvert.DeserializeObject<AppHistory>(json)) ?? new AppHistory();
+                }
+                catch
+                {
+                    appHistory = new AppHistory();
+                }
+            else
+                appHistory = new AppHistory();
         }
 
         /// <summary>
@@ -35,8 +53,11 @@ namespace ClipBoardPreTreatment.Tools
         /// </summary>
         public static void Save()
         {
-            var json = JsonConvert.SerializeObject(appConfig, Formatting.Indented);
-            File.WriteAllText(AppConfig.SavePath, json);
+            var json1 = JsonConvert.SerializeObject(appConfig, Formatting.Indented);
+            File.WriteAllText(AppConfig.SavePath, json1);
+
+            var json2 = JsonConvert.SerializeObject(appHistory, Formatting.Indented);
+            File.WriteAllText(AppHistory.SavePath, json2);
         }
     }
 }

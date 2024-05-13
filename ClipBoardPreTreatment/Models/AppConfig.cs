@@ -16,7 +16,7 @@ namespace ClipBoardPreTreatment.Models
         /// <summary>
         /// 配置文件存储路径
         /// </summary>
-        public static readonly string SavePath = $"{AppDomain.CurrentDomain.BaseDirectory}AppConfig.json";
+        public static readonly string SavePath = $"{AppDomain.CurrentDomain.BaseDirectory}Config.json";
 
         /// <summary>
         /// 全局启用
@@ -31,6 +31,12 @@ namespace ClipBoardPreTreatment.Models
         /// </summary>
         [ObservableProperty]
         private int globalRuleDetectionCount = 0;
+
+        /// <summary>
+        /// 全局匹配次数
+        /// </summary>
+        [ObservableProperty]
+        private int globalEnabledRuleCount = 0;
 
         private const int minimumDetectTextLengthLimit = 10;
         private const int maximumDetectTextLengthLimit = 2000;
@@ -61,19 +67,17 @@ namespace ClipBoardPreTreatment.Models
         public BindingList<RuleItem> RuleItems { get; set; } = new BindingList<RuleItem>();
         private void RuleItems_ListChanged(object? sender, ListChangedEventArgs e)
         {
-            int count = 0;
+            int d_count = 0;
+            int e_count = 0;
             foreach (var item in RuleItems)
             {
-                count += item.RuleDetectionCount;
+                d_count += item.RuleDetectionCount;
+                if (item.RuleEnabled)
+                    e_count++;
             }
-            GlobalRuleDetectionCount = count;
+            GlobalRuleDetectionCount = d_count;
+            GlobalEnabledRuleCount = e_count;
         }
-
-        /// <summary>
-        /// 历史记录列表
-        /// </summary>
-        [property: JsonProperty]
-        public BindingList<Tuple<string, string>> HistoryItems { get; set; } = new BindingList<Tuple<string, string>>();
 
         /// <summary>
         /// 历史记录保存数量
