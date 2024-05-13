@@ -32,17 +32,39 @@ namespace ClipBoardPreTreatment.Tools
                 var tempStr = ((SharpClipboard)sender!).ClipboardText;
                 if (tempStr.Length <= GlobalDataHelper.appConfig!.DetectTextLengthLimit)
                 {
-                    GlobalDataHelper.appConfig!.HistoryItems.Insert(0, tempStr);
-                    var firstDetectedRule = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).FirstOrDefault(r => Regex.IsMatch(tempStr, r.RuleReplacePattern!));
-                    if (firstDetectedRule != null)
+                    if (tempStr != GlobalDataHelper.appConfig!.HistoryItems.FirstOrDefault()?.Item1)
                     {
-                        firstDetectedRule.RuleDetectionCount++;
-                        string res = Regex.Replace(tempStr, firstDetectedRule.RuleReplacePattern!, firstDetectedRule.RuleReplaceText!);
-                        ((SharpClipboard)sender!).MonitorClipboard = false;
-                        System.Windows.Clipboard.SetText(res);
-                        ((SharpClipboard)sender!).MonitorClipboard = true;
+                        var firstDetectedRule = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).FirstOrDefault(r => Regex.IsMatch(tempStr, r.RuleDetectPattern!));
+                        if (firstDetectedRule != null)
+                        {
+                            firstDetectedRule.RuleDetectionCount++;
+                            string res = Regex.Replace(tempStr, firstDetectedRule.RuleReplacePattern!, firstDetectedRule.RuleReplaceText!);
+                            ((SharpClipboard)sender!).MonitorClipboard = false;
+                            System.Windows.Clipboard.SetText(res);
+                            ((SharpClipboard)sender!).MonitorClipboard = true;
+                            Save2History(tempStr, firstDetectedRule.RuleDetectPattern!);
+                        }
+                        else
+                        {
+                            Save2History(tempStr, "无");
+                        }
                     }
                 }
+            }
+        }
+
+        private static void Save2History(string text, string pattern)
+        {
+            var temp = new Tuple<string, string>(text, pattern);
+
+            if (GlobalDataHelper.appConfig!.HistoryItems.Count < GlobalDataHelper.appConfig.HistorySaveCountLimit)
+            {
+                GlobalDataHelper.appConfig!.HistoryItems.Insert(0, temp);
+            }
+            else
+            {
+                GlobalDataHelper.appConfig!.HistoryItems.Remove(GlobalDataHelper.appConfig!.HistoryItems.Last());
+                GlobalDataHelper.appConfig!.HistoryItems.Insert(0, temp);
             }
         }
     }

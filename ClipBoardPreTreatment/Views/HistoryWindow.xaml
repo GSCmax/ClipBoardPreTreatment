@@ -10,6 +10,24 @@
         Title="剪切板文本预处理工具 历史查看器"
         Height="350" Width="600"
         MinHeight="350" MinWidth="600"
-        FontSize="12">
-    <ListBox Margin="10" BorderBrush="#707070" ItemsSource="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=HistoryItems}"/>
+        FontSize="14">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=HistoryItems, UpdateSourceTrigger=PropertyChanged}"
+                  AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False"
+                  SelectionUnit="FullRow" HeadersVisibility="Column" AlternatingRowBackground="AliceBlue" FontSize="12" BorderBrush="#707070">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="文本" Width="4*" Binding="{Binding Item1, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False" IsReadOnly="True"/>
+                <DataGridTextColumn Header="命中规则" Width="*" Binding="{Binding Item2, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DockPanel Grid.Row="1" Margin="10,0,10,10" LastChildFill="False">
+            <TextBlock DockPanel.Dock="Left" Text="历史记录保存数量" VerticalAlignment="Center"/>
+            <TextBox DockPanel.Dock="Left" Margin="5,0,0,0" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=HistorySaveCountLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" Width="50" Height="18" FontSize="13" BorderBrush="#707070"/>
+            <!--<TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=HistoryItems.Count, StringFormat=全局命中: {0}}"/>-->
+        </DockPanel>
+    </Grid>
 </Window>

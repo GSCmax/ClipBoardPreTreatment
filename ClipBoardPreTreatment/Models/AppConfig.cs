@@ -35,6 +35,9 @@ namespace ClipBoardPreTreatment.Models
         private const int minimumDetectTextLengthLimit = 10;
         private const int maximumDetectTextLengthLimit = 2000;
 
+        /// <summary>
+        /// 检测文本长度限制
+        /// </summary>
         [ObservableProperty]
         [property: JsonProperty]
         [property: System.ComponentModel.DataAnnotations.Range(minimumDetectTextLengthLimit, maximumDetectTextLengthLimit)]
@@ -70,6 +73,14 @@ namespace ClipBoardPreTreatment.Models
         /// 历史记录列表
         /// </summary>
         [property: JsonProperty]
-        public BindingList<string> HistoryItems { get; set; } = new BindingList<string>();
+        public BindingList<Tuple<string, string>> HistoryItems { get; set; } = new BindingList<Tuple<string, string>>();
+
+        /// <summary>
+        /// 历史记录保存数量
+        /// </summary>
+        [ObservableProperty]
+        [property: JsonProperty]
+        [property: System.ComponentModel.DataAnnotations.Range(0, 1000)]
+        private int historySaveCountLimit = 100;
     }
 }
