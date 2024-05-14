@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace ClipBoardPreTreatment.Views
 {
@@ -10,6 +11,12 @@ namespace ClipBoardPreTreatment.Views
         public ConfigWindow()
         {
             InitializeComponent();
+        }
+
+        private void DataGrid_Unloaded(object sender, RoutedEventArgs e)
+        {
+            var dg = (DataGrid)sender;
+            dg.CommitEdit(DataGridEditingUnit.Row, true);
         }
     }
 }
