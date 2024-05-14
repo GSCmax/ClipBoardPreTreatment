@@ -14,9 +14,8 @@ namespace ClipBoardPreTreatment
         {
             base.OnStartup(e);
 
-            bool createNew;
             Process p = Process.GetCurrentProcess();
-            Mutex m = new Mutex(true, p.ProcessName, out createNew);
+            _ = new Mutex(true, p.ProcessName, out bool createNew);
             if (!createNew)
                 Application.Current.Shutdown();
 
@@ -24,7 +23,7 @@ namespace ClipBoardPreTreatment
             ClipboardHelper.Init();
             GlobalDataHelper.Init();
 
-            TaskbarIcon notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
+            _ = (TaskbarIcon)FindResource("NotifyIcon");
         }
 
         protected override void OnExit(ExitEventArgs e)
