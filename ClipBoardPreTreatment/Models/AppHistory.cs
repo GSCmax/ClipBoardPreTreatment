@@ -12,6 +12,6 @@ namespace ClipBoardPreTreatment.Models
         /// <summary>
         /// 历史记录列表
         /// </summary>
-        public BindingList<Tuple<string, string>> HistoryItems { get; set; } = new BindingList<Tuple<string, string>>();
+        public BindingList<Tuple<string, string>> HistoryItems { get; set; } = [];
     }
 }

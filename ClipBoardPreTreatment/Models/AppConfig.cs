@@ -64,7 +64,7 @@ namespace ClipBoardPreTreatment.Models
         /// 规则列表
         /// </summary>
         [property: JsonProperty]
-        public BindingList<RuleItem> RuleItems { get; set; } = new BindingList<RuleItem>();
+        public BindingList<RuleItem> RuleItems { get; set; } = [];
         private void RuleItems_ListChanged(object? sender, ListChangedEventArgs e)
         {
             int d_count = 0;
