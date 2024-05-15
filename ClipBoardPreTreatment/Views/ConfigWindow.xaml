@@ -11,11 +11,6 @@
         Height="350" Width="600"
         MinHeight="350" MinWidth="600"
         FontSize="14">
-
-    <Window.DataContext>
-        <vms:ConfigWindowVModel/>
-    </Window.DataContext>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

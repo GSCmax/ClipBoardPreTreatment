@@ -1,18 +1,6 @@
-﻿using ClipBoardPreTreatment.Tools;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-
-namespace ClipBoardPreTreatment.VModels
+﻿namespace ClipBoardPreTreatment.VModels
 {
-    internal partial class ConfigWindowVModel : ObservableObject
+    internal class ConfigWindowVModel
     {
-        /// <summary>
-        /// 确认按钮点击
-        /// </summary>
-        [RelayCommand]
-        private void SaveBTNClick()
-        {
-            GlobalDataHelper.Save();
-        }
     }
 }
