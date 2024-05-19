@@ -1,6 +1,5 @@
 ﻿using ClipBoardPreTreatment.Models;
 using Newtonsoft.Json;
-using System.ComponentModel;
 using System.IO;
 
 namespace ClipBoardPreTreatment.Tools
@@ -57,7 +56,6 @@ namespace ClipBoardPreTreatment.Tools
             var json1 = JsonConvert.SerializeObject(appConfig, Formatting.Indented);
             File.WriteAllText(AppConfig.SavePath, json1);
 
-            appHistory!.HistoryItems = new BindingList<Tuple<string, string>>(appHistory!.HistoryItems.Take(appConfig!.HistorySaveCountLimit).ToList());
             var json2 = JsonConvert.SerializeObject(appHistory, Formatting.Indented);
             File.WriteAllText(AppHistory.SavePath, json2);
         }
