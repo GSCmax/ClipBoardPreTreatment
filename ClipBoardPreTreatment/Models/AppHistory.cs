@@ -25,7 +25,7 @@ namespace ClipBoardPreTreatment.Models
         /// 历史记录列表
         /// </summary>
         [property: JsonProperty]
-        public BindingList<Tuple<string, string>> HistoryItems { get; set; } = [];
+        public BindingList<HistoryItem> HistoryItems { get; set; } = [];
 
         /// <summary>
         /// 序列化时自动截断
@@ -34,7 +34,7 @@ namespace ClipBoardPreTreatment.Models
         [OnSerializing]
         internal void OnOnSerializing(StreamingContext context)
         {
-            HistoryItems = new BindingList<Tuple<string, string>>(HistoryItems.Take(HistorySaveCountLimit).ToList());
+            HistoryItems = new BindingList<HistoryItem>(HistoryItems.Take(HistorySaveCountLimit).ToList());
         }
     }
 }

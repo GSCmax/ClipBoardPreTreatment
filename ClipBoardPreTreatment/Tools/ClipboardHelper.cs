@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using ClipBoardPreTreatment.Models;
+using System.Text.RegularExpressions;
 using WK.Libraries.SharpClipboardNS;
 using static WK.Libraries.SharpClipboardNS.SharpClipboard;
 
@@ -32,7 +33,7 @@ namespace ClipBoardPreTreatment.Tools
                 var tempStr = ((SharpClipboard)sender!).ClipboardText;
                 if (tempStr.Length <= GlobalDataHelper.appConfig!.DetectTextLengthLimit)
                 {
-                    if (tempStr != GlobalDataHelper.appHistory!.HistoryItems.FirstOrDefault()?.Item1)
+                    if (tempStr != GlobalDataHelper.appHistory!.HistoryItems.FirstOrDefault()?.ClipboardText)
                     {
                         var firstDetectedRule = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).FirstOrDefault(r => Regex.IsMatch(tempStr, r.RuleDetectPattern!));
                         if (firstDetectedRule != null)
@@ -43,11 +44,11 @@ namespace ClipBoardPreTreatment.Tools
                             System.Windows.Clipboard.SetText(res);
                             ((SharpClipboard)sender!).MonitorClipboard = true;
 
-                            GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new Tuple<string, string>(tempStr, firstDetectedRule.RuleDetectPattern!));
+                            GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new HistoryItem() { ClipboardText = tempStr, DetectedRule = firstDetectedRule.RuleDetectPattern!, AddTime = DateTime.Now });
                         }
                         else
                         {
-                            GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new Tuple<string, string>(tempStr, "无"));
+                            GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new HistoryItem() { ClipboardText = tempStr, DetectedRule = "无", AddTime = DateTime.Now });
                         }
                     }
                 }

@@ -78,13 +78,5 @@ namespace ClipBoardPreTreatment.Models
             GlobalRuleDetectionCount = d_count;
             GlobalEnabledRuleCount = e_count;
         }
-
-        /// <summary>
-        /// 历史记录保存数量
-        /// </summary>
-        [ObservableProperty]
-        [property: JsonProperty]
-        [property: System.ComponentModel.DataAnnotations.Range(0, 1000)]
-        private int historySaveCountLimit = 100;
     }
 }

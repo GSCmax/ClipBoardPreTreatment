@@ -20,8 +20,9 @@
                   AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" IsReadOnly="True"
                   SelectionUnit="FullRow" HeadersVisibility="Column" AlternatingRowBackground="AliceBlue" FontSize="12" BorderBrush="#707070">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="文本" Width="4*" Binding="{Binding Item1, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn Header="命中规则" Width="*" Binding="{Binding Item2, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="文本" Width="*" Binding="{Binding ClipboardText}"/>
+                <DataGridTextColumn Header="命中规则" Width="100" Binding="{Binding DetectedRule}"/>
+                <DataGridTextColumn Header="时间" Width="100" Binding="{Binding AddTime, StringFormat='yyyy.MM.dd HH:mm:ss'}"/>
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1" Margin="10,0,10,10" LastChildFill="False">
