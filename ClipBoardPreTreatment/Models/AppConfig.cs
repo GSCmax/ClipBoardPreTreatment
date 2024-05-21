@@ -10,7 +10,11 @@ namespace ClipBoardPreTreatment.Models
     {
         public AppConfig()
         {
-            RuleItems.ListChanged += RuleItems_ListChanged;
+            RuleItems.ListChanged += (object? _, ListChangedEventArgs _) =>
+            {
+                OnPropertyChanged(nameof(GlobalRuleDetectionCount));
+                OnPropertyChanged(nameof(GlobalEnabledRuleCount));
+            };
         }
 
         /// <summary>
@@ -29,34 +33,29 @@ namespace ClipBoardPreTreatment.Models
         /// <summary>
         /// 全局匹配次数
         /// </summary>
-        [ObservableProperty]
-        private int globalRuleDetectionCount = 0;
+        public int GlobalRuleDetectionCount => RuleItems.Sum(item => item.RuleDetectionCount);
 
         /// <summary>
         /// 全局匹配次数
         /// </summary>
-        [ObservableProperty]
-        private int globalEnabledRuleCount = 0;
-
-        private const int minimumDetectTextLengthLimit = 10;
-        private const int maximumDetectTextLengthLimit = 2000;
+        public int GlobalEnabledRuleCount => RuleItems.Sum(item => item.RuleEnabled ? 1 : 0);
 
         /// <summary>
         /// 检测文本长度限制
         /// </summary>
         [ObservableProperty]
         [property: JsonProperty]
-        [property: System.ComponentModel.DataAnnotations.Range(minimumDetectTextLengthLimit, maximumDetectTextLengthLimit)]
+        [property: System.ComponentModel.DataAnnotations.Range(10, 2000)]
         private int detectTextLengthLimit = 200;
         partial void OnDetectTextLengthLimitChanged(int value)
         {
             ValidateProperty(value, nameof(DetectTextLengthLimit));
             if (HasErrors)
             {
-                if (DetectTextLengthLimit < minimumDetectTextLengthLimit)
-                    DetectTextLengthLimit = minimumDetectTextLengthLimit;
-                if (DetectTextLengthLimit > maximumDetectTextLengthLimit)
-                    DetectTextLengthLimit = maximumDetectTextLengthLimit;
+                if (DetectTextLengthLimit < 10)
+                    DetectTextLengthLimit = 10;
+                if (DetectTextLengthLimit > 2000)
+                    DetectTextLengthLimit = 2000;
             }
         }
 
@@ -65,18 +64,5 @@ namespace ClipBoardPreTreatment.Models
         /// </summary>
         [property: JsonProperty]
         public BindingList<RuleItem> RuleItems { get; set; } = [];
-        private void RuleItems_ListChanged(object? sender, ListChangedEventArgs e)
-        {
-            int d_count = 0;
-            int e_count = 0;
-            foreach (var item in RuleItems)
-            {
-                d_count += item.RuleDetectionCount;
-                if (item.RuleEnabled)
-                    e_count++;
-            }
-            GlobalRuleDetectionCount = d_count;
-            GlobalEnabledRuleCount = e_count;
-        }
     }
 }
