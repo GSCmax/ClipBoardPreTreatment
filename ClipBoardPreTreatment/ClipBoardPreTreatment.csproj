@@ -8,7 +8,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
     <Authors>GSC</Authors>
-    <Version>1.0.0.1</Version>
+    <Version>1.0.0.2</Version>
     <Copyright>Copyright © GSC 2024</Copyright>
     <RepositoryUrl>https://github.com/GSCmax/ClipBoardPreTreatment</RepositoryUrl>
   </PropertyGroup>
