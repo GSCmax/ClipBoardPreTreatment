@@ -8,6 +8,7 @@
         xmlns:tools="clr-namespace:ClipBoardPreTreatment.Tools"
         mc:Ignorable="d"
         Title="剪切板文本预处理工具 配置管理器"
+        WindowStartupLocation="CenterScreen"
         Height="350" Width="600"
         MinHeight="350" MinWidth="600"
         FontSize="14">
