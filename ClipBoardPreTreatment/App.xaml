@@ -18,7 +18,7 @@
             <!--#region NotifyIcon-->
             <tb:TaskbarIcon x:Key="NotifyIcon"
                             IconSource="/ClipBoardPreTreatment;component/Resources/icon.ico"
-                            ToolTipText="剪切板文本预处理工具&#x0a;单击打开历史查看器&#x0a;双击打开配置管理器&#x0a;右击打开菜单"
+                            ToolTipText="{Binding Source={x:Static tools:GlobalDataHelper.appVersion}, StringFormat='剪切板文本预处理工具 {0}&#x0a;单击打开历史查看器&#x0a;双击打开配置管理器&#x0a;右击打开菜单'}"
                             LeftClickCommand="{Binding ShowHistoryWindowCommand}"
                             DoubleClickCommand="{Binding ShowConfigWindowCommand}">
                 <tb:TaskbarIcon.DataContext>

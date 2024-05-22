@@ -1,11 +1,17 @@
 ﻿using ClipBoardPreTreatment.Models;
 using Newtonsoft.Json;
 using System.IO;
+using System.Reflection;
 
 namespace ClipBoardPreTreatment.Tools
 {
     static class GlobalDataHelper
     {
+        /// <summary>
+        /// 存储当前App实例的版本信息
+        /// </summary>
+        public static string appVersion = Assembly.GetEntryAssembly()!.GetName().Version!.ToString();
+
         /// <summary>
         /// 存储当前App实例的配置信息
         /// </summary>
