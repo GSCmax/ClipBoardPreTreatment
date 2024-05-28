@@ -32,7 +32,7 @@
             <CheckBox DockPanel.Dock="Left" Margin="-1,0,0,0" Content="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnabledRuleCount}" ContentStringFormat="全局启用【{0}】" VerticalAlignment="Center" VerticalContentAlignment="Center"  IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable}"/>
             <TextBlock DockPanel.Dock="Left" Margin="10,0,0,0" Text="匹配文本长度限制" VerticalAlignment="Center"/>
             <TextBox DockPanel.Dock="Left" Margin="5,0,0,0" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=DetectTextLengthLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" Width="50" Height="18" FontSize="13" BorderBrush="#707070"/>
-            <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalRuleDetectionCount, StringFormat=全局命中: {0}}"/>
+            <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalRuleDetectionCount, StringFormat=全局命中【{0}】}"/>
         </DockPanel>
     </Grid>
 </Window>

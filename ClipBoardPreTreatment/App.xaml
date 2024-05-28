@@ -14,13 +14,22 @@
             <Geometry o:Freeze="True" x:Key="ExitGeometry">M495.469714 0C224.621714 0 0 224.621714 0 495.469714c0 270.884571 224.621714 495.506286 495.469714 495.506286 270.884571 0 495.506286-224.621714 495.506286-495.506286C990.976 224.621714 766.354286 0 495.469714 0z m211.419429 634.221714c19.821714 19.821714 19.821714 46.226286 0 66.048s-46.226286 19.821714-66.048 0l-138.752-138.715428-145.334857 145.334857a51.858286 51.858286 0 0 1-72.667429 0 51.858286 51.858286 0 0 1 0-72.667429l145.334857-145.334857-138.752-138.752c-19.821714-19.821714-19.821714-46.226286 0-66.048s46.262857-19.821714 66.084572 0l138.715428 138.715429 145.371429-145.334857a51.858286 51.858286 0 0 1 72.667428 0 51.858286 51.858286 0 0 1 0 72.667428l-145.371428 145.334857 138.752 138.752z</Geometry>
             <Geometry o:Freeze="True" x:Key="HistoryGeometry">M896 512c0 78.945524-23.82019 152.30781-64.658286 213.333333-68.900571 102.912-186.197333 170.666667-319.341714 170.666667a382.756571 382.756571 0 0 1-269.336381-110.299429v131.632762H184.003048v-221.330285h221.330285v58.660571h-110.031238A324.120381 324.120381 0 0 0 512 837.315048c14.457905 0 28.696381-0.926476 42.666667-2.755048v-39.887238H512a283.794286 283.794286 0 0 1-64-7.265524v-134.095238H154.843429A383.000381 383.000381 0 0 1 128 512c0-212.065524 171.934476-384 384-384S896 299.934476 896 512z m-426.666667-192v234.666667h192v-58.660572h-133.339428v-176.006095H469.333333z</Geometry>
             <!--#endregion-->
-
             <!--#region NotifyIcon-->
             <tb:TaskbarIcon x:Key="NotifyIcon"
                             IconSource="/ClipBoardPreTreatment;component/Resources/icon.ico"
-                            ToolTipText="{Binding Source={x:Static tools:GlobalDataHelper.appVersion}, StringFormat='剪切板文本预处理工具 {0}&#x0a;单击打开历史查看器&#x0a;双击打开配置管理器&#x0a;右击打开菜单'}"
                             LeftClickCommand="{Binding ShowHistoryWindowCommand}"
                             DoubleClickCommand="{Binding ShowConfigWindowCommand}">
+                <tb:TaskbarIcon.Resources>
+                    <local:Bool2StringConverter x:Key="B2SC"/>
+                </tb:TaskbarIcon.Resources>
+                <tb:TaskbarIcon.ToolTipText>
+                    <MultiBinding StringFormat="剪切板文本预处理工具 {0}&#x0a;全局启用【{2}】【{1}】&#x0a;全局命中【{3}】&#x0a;单击打开历史查看器&#x0a;双击打开配置管理器&#x0a;右击打开菜单">
+                        <Binding Source="{x:Static tools:GlobalDataHelper.appVersion}"/>
+                        <Binding Source="{x:Static tools:GlobalDataHelper.appConfig}" Path="GlobalEnable" Converter="{StaticResource B2SC}"/>
+                        <Binding Source="{x:Static tools:GlobalDataHelper.appConfig}" Path="GlobalEnabledRuleCount"/>
+                        <Binding Source="{x:Static tools:GlobalDataHelper.appConfig}" Path="GlobalRuleDetectionCount"/>
+                    </MultiBinding>
+                </tb:TaskbarIcon.ToolTipText>
                 <tb:TaskbarIcon.DataContext>
                     <vms:NotifyIconVM/>
                 </tb:TaskbarIcon.DataContext>
