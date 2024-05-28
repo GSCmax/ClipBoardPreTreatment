@@ -23,7 +23,7 @@
                     <local:Bool2StringConverter x:Key="B2SC"/>
                 </tb:TaskbarIcon.Resources>
                 <tb:TaskbarIcon.ToolTipText>
-                    <MultiBinding StringFormat="剪切板文本预处理工具 {0}&#x0a;全局启用【{2}】【{1}】&#x0a;全局命中【{3}】&#x0a;单击打开历史查看器&#x0a;双击打开配置管理器&#x0a;右击打开菜单">
+                    <MultiBinding StringFormat="剪切板文本预处理工具 {0}&#x0a;全局{1}【{2}】&#x0a;全局命中【{3}】&#x0a;单击打开历史查看器&#x0a;双击打开配置管理器&#x0a;右击打开菜单">
                         <Binding Source="{x:Static tools:GlobalDataHelper.appVersion}"/>
                         <Binding Source="{x:Static tools:GlobalDataHelper.appConfig}" Path="GlobalEnable" Converter="{StaticResource B2SC}"/>
                         <Binding Source="{x:Static tools:GlobalDataHelper.appConfig}" Path="GlobalEnabledRuleCount"/>
