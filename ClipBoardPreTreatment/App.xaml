@@ -16,7 +16,7 @@
             <!--#endregion-->
             <!--#region NotifyIcon-->
             <tb:TaskbarIcon x:Key="NotifyIcon"
-                            IconSource="/ClipBoardPreTreatment;component/Resources/icon.ico"
+                            IconSource="/ClipBoardPreTreatment;component/Resources/icon_small.ico"
                             LeftClickCommand="{Binding ShowHistoryWindowCommand}"
                             DoubleClickCommand="{Binding ShowConfigWindowCommand}">
                 <tb:TaskbarIcon.Resources>
