@@ -23,6 +23,11 @@ namespace ClipBoardPreTreatment.Tools
         public static AppHistory? appHistory;
 
         /// <summary>
+        /// 存储当前系统是否是浅色模式
+        /// </summary>
+        public static bool isLightMode = false;
+
+        /// <summary>
         /// 获取本地存储的配置信息与历史记录
         /// </summary>
         public static void Init()
@@ -52,6 +57,14 @@ namespace ClipBoardPreTreatment.Tools
                 }
             else
                 appHistory = new AppHistory();
+
+            try
+            {
+                var v = Microsoft.Win32.Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "SystemUsesLightTheme", "1");
+                if (v != null && v.ToString() == "0")
+                    isLightMode = false;
+            }
+            catch { }
         }
 
         /// <summary>

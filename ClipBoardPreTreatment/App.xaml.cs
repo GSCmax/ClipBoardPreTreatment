@@ -52,4 +52,20 @@ namespace ClipBoardPreTreatment
             throw new NotImplementedException();
         }
     }
+
+    /// <summary>
+    /// 用于状态栏图表选择
+    /// </summary>
+    public class Bool2ResourceConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (bool)value ? ((string)parameter).Split('|')[0] : ((string)parameter).Split('|')[1];
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

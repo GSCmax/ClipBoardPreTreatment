@@ -24,8 +24,11 @@
     <Resource Include="Resources\icon.ico">
       <Link>Resources\icon.ico</Link>
     </Resource>
-    <Resource Include="Resources\icon_small.ico">
-      <Link>Resources\icon_small.ico</Link>
+    <Resource Include="Resources\icon_small_origin.ico">
+      <Link>Resources\icon_small_origin.ico</Link>
+    </Resource>
+    <Resource Include="Resources\icon_small_white.ico">
+      <Link>Resources\icon_small_white.ico</Link>
     </Resource>
   </ItemGroup>
 

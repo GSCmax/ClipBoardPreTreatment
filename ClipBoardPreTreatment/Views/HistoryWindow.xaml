@@ -8,6 +8,7 @@
         xmlns:tools="clr-namespace:ClipBoardPreTreatment.Tools"
         mc:Ignorable="d"
         Title="剪切板文本预处理工具 历史查看器"
+        Icon="/ClipBoardPreTreatment;component/Resources/icon_small_origin.ico"
         WindowStartupLocation="CenterScreen"
         Height="350" Width="600"
         MinHeight="350" MinWidth="600"
