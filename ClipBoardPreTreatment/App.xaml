@@ -50,7 +50,7 @@
                         <Separator/>
                         <MenuItem Header="退出程序" Command="{Binding ExitApplicationCommand}">
                             <MenuItem.Icon>
-                                <Path VerticalAlignment="Center" HorizontalAlignment="Center" Fill="#292d32" Stretch="Uniform" Data="{StaticResource ExitGeometry}"/>
+                                <Path VerticalAlignment="Center" HorizontalAlignment="Center" Fill="#d43f3a" Stretch="Uniform" Data="{StaticResource ExitGeometry}"/>
                             </MenuItem.Icon>
                         </MenuItem>
                     </ContextMenu>
