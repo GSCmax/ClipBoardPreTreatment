@@ -13,14 +13,20 @@
         Height="350" Width="600"
         MinHeight="350" MinWidth="600"
         FontSize="14">
+    <Window.DataContext>
+        <vms:HistoryWindowVM/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding Source={x:Static tools:GlobalDataHelper.appHistory}, Path=HistoryItems, UpdateSourceTrigger=PropertyChanged}"
+        <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding Source={x:Static tools:GlobalDataHelper.appHistory}, Path=HistoryItems, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedHistoryItem}"
                   AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" IsReadOnly="True"
                   SelectionUnit="FullRow" HeadersVisibility="Column" AlternatingRowBackground="AliceBlue" FontSize="12" BorderBrush="#707070">
+            <DataGrid.InputBindings>
+                <KeyBinding Command="{Binding DeleteItemCommand}" Key="Delete"/>
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="文本" Width="*" Binding="{Binding ClipboardText}"/>
                 <DataGridTextColumn Header="命中规则" Width="100" Binding="{Binding DetectedRule}"/>

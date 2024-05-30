@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace ClipBoardPreTreatment.VModels
 {
-    public partial class NotifyIconVM : ObservableObject
+    internal partial class NotifyIconVM : ObservableObject
     {
         [RelayCommand]
         private void ShowConfigWindow()
