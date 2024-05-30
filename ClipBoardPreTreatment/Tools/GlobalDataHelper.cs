@@ -25,7 +25,7 @@ namespace ClipBoardPreTreatment.Tools
         /// <summary>
         /// 存储当前系统是否是浅色模式
         /// </summary>
-        public static bool isLightMode = false;
+        public static bool isLightMode = true;
 
         /// <summary>
         /// 获取本地存储的配置信息与历史记录
