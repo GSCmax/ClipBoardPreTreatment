@@ -7,6 +7,9 @@ namespace ClipBoardPreTreatment.VModels
 {
     internal partial class NotifyIconVM : ObservableObject
     {
+        /// <summary>
+        /// 显示配置管理器
+        /// </summary>
         [RelayCommand]
         private void ShowConfigWindow()
         {
@@ -17,6 +20,9 @@ namespace ClipBoardPreTreatment.VModels
             }
         }
 
+        /// <summary>
+        /// 显示历史查看器
+        /// </summary>
         [RelayCommand]
         private void ShowHistoryWindow()
         {
@@ -27,6 +33,9 @@ namespace ClipBoardPreTreatment.VModels
             }
         }
 
+        /// <summary>
+        /// 退出程序
+        /// </summary>
         [RelayCommand]
         private void ExitApplication()
         {

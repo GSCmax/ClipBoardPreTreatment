@@ -54,7 +54,7 @@ namespace ClipBoardPreTreatment
     }
 
     /// <summary>
-    /// 用于状态栏图表选择
+    /// 用于状态栏深浅色图标选择
     /// </summary>
     public class Bool2ResourceConverter : IValueConverter
     {
