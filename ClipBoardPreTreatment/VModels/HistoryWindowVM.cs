@@ -27,7 +27,7 @@ namespace ClipBoardPreTreatment.VModels
         /// 复制选定项
         /// </summary>
         [RelayCommand]
-        private void Copy()
+        private void CopyItem()
         {
             if (SelectedHistoryItem != null)
                 System.Windows.Clipboard.SetText(SelectedHistoryItem.ClipboardText);

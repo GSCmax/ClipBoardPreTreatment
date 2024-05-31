@@ -26,8 +26,8 @@
                   SelectionUnit="FullRow" HeadersVisibility="Column" AlternatingRowBackground="AliceBlue" FontSize="12" BorderBrush="#707070">
             <DataGrid.InputBindings>
                 <KeyBinding Command="{Binding DeleteItemCommand}" Key="Delete"/>
-                <KeyBinding Command="{Binding CopyCommand}" Key="C" Modifiers="Ctrl"/>
-                <MouseBinding Command="{Binding CopyCommand}" MouseAction="LeftDoubleClick"/>
+                <KeyBinding Command="{Binding CopyItemCommand}" Key="C" Modifiers="Ctrl"/>
+                <MouseBinding Command="{Binding CopyItemCommand}" MouseAction="LeftDoubleClick"/>
             </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="文本" Width="*" Binding="{Binding ClipboardText}"/>

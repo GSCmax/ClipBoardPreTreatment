@@ -13,14 +13,20 @@
         Height="350" Width="600"
         MinHeight="350" MinWidth="600"
         FontSize="14">
+    <Window.DataContext>
+        <vms:ConfigWindowVModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleItems, UpdateSourceTrigger=PropertyChanged}"
+        <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleItems, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedRuleItem}"
                   AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" Unloaded="DataGrid_Unloaded"
                   SelectionUnit="FullRow" HeadersVisibility="Column" AlternatingRowBackground="AliceBlue" FontSize="12" BorderBrush="#707070">
+            <DataGrid.InputBindings>
+                <KeyBinding Command="{Binding CopyItemCommand}" Key="C" Modifiers="Ctrl"/>
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="启用" Width="auto" Binding="{Binding RuleEnabled, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False"/>
                 <DataGridTextColumn Header="命中" Width="auto" Binding="{Binding RuleDetectionCount, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False" IsReadOnly="True"/>
