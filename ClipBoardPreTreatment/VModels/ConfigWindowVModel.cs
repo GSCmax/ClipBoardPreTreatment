@@ -11,7 +11,7 @@ namespace ClipBoardPreTreatment.VModels
         /// 匹配规则列表的选定项
         /// </summary>
         [ObservableProperty]
-        private RuleItem? selectedRuleItem;
+        private object? selectedRuleItem;
 
         /// <summary>
         /// 复制选定项
@@ -19,15 +19,15 @@ namespace ClipBoardPreTreatment.VModels
         [RelayCommand]
         private void CopyItem()
         {
-            if (SelectedRuleItem != null)
+            if (SelectedRuleItem is RuleItem t)
             {
                 GlobalDataHelper.appConfig!.RuleItems.Add(new RuleItem()
                 {
                     RuleEnabled = false,
                     RuleDetectionCount = 0,
-                    RuleDetectPattern = SelectedRuleItem.RuleDetectPattern,
-                    RuleReplacePattern = SelectedRuleItem.RuleReplacePattern,
-                    RuleReplaceText = SelectedRuleItem.RuleReplaceText,
+                    RuleDetectPattern = t.RuleDetectPattern,
+                    RuleReplacePattern = t.RuleReplacePattern,
+                    RuleReplaceText = t.RuleReplaceText
                 });
             }
         }
