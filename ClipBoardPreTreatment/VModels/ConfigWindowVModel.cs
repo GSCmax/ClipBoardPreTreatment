@@ -21,7 +21,9 @@ namespace ClipBoardPreTreatment.VModels
         {
             if (SelectedRuleItem is RuleItem t)
             {
-                GlobalDataHelper.appConfig!.RuleItems.Add(new RuleItem()
+                int next = GlobalDataHelper.appConfig!.RuleItems.IndexOf(t) + 1;
+
+                GlobalDataHelper.appConfig!.RuleItems.Insert(next, new RuleItem()
                 {
                     RuleEnabled = false,
                     RuleDetectionCount = 0,
