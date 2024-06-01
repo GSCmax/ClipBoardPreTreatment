@@ -8,9 +8,29 @@ namespace ClipBoardPreTreatment.Views
     /// </summary>
     public partial class ConfigWindow : Window
     {
-        public ConfigWindow()
+        private static ConfigWindow? configWindow_instance;
+
+        private ConfigWindow()
         {
             InitializeComponent();
+        }
+
+        public static ConfigWindow Instance
+        {
+            get
+            {
+                if (configWindow_instance == null)
+                {
+                    configWindow_instance = new ConfigWindow();
+                }
+                return configWindow_instance;
+            }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            configWindow_instance = null;
+            base.OnClosed(e);
         }
 
         private void DataGrid_Unloaded(object sender, RoutedEventArgs e)

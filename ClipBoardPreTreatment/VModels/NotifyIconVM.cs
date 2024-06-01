@@ -13,11 +13,10 @@ namespace ClipBoardPreTreatment.VModels
         [RelayCommand]
         private void ShowConfigWindow()
         {
-            if (Application.Current.MainWindow == null)
-            {
-                Application.Current.MainWindow = new ConfigWindow();
-                Application.Current.MainWindow.Show();
-            }
+            var cw = ConfigWindow.Instance;
+            cw.Show();
+            cw.WindowState = WindowState.Normal;
+            cw.Activate();
         }
 
         /// <summary>
@@ -26,11 +25,10 @@ namespace ClipBoardPreTreatment.VModels
         [RelayCommand]
         private void ShowHistoryWindow()
         {
-            if (Application.Current.MainWindow == null)
-            {
-                Application.Current.MainWindow = new HistoryWindow();
-                Application.Current.MainWindow.Show();
-            }
+            var hw = HistoryWindow.Instance;
+            hw.Show();
+            hw.WindowState = WindowState.Normal;
+            hw.Activate();
         }
 
         /// <summary>
