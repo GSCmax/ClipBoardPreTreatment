@@ -26,29 +26,29 @@ namespace ClipBoardPreTreatment.Tools
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void OnClipboardChanged(Object? sender, ClipboardChangedEventArgs e)
+        private static void OnClipboardChanged(object? sender, ClipboardChangedEventArgs e)
         {
-            if (e.ContentType == ContentTypes.Text)
+            if (sender is SharpClipboard sClipboard)
             {
-                var tempStr = ((SharpClipboard)sender!).ClipboardText;
-                if (tempStr.Length <= GlobalDataHelper.appConfig!.DetectTextLengthLimit)
+                if (e.ContentType == ContentTypes.Text)
                 {
-                    if (tempStr != GlobalDataHelper.appHistory!.HistoryItems.FirstOrDefault()?.ClipboardText)
+                    var tempStr = sClipboard.ClipboardText;
+                    if (tempStr.Length <= GlobalDataHelper.appConfig!.DetectTextLengthLimit)
                     {
-                        var firstDetectedRule = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).FirstOrDefault(r => Regex.IsMatch(tempStr, r.RuleDetectPattern!));
-                        if (firstDetectedRule != null)
+                        if (tempStr != GlobalDataHelper.appHistory!.HistoryItems.FirstOrDefault()?.ClipboardText)
                         {
-                            firstDetectedRule.RuleDetectionCount++;
-                            string res = Regex.Replace(tempStr, firstDetectedRule.RuleReplacePattern!, firstDetectedRule.RuleReplaceText!);
-                            ((SharpClipboard)sender!).MonitorClipboard = false;
-                            System.Windows.Clipboard.SetText(res);
-                            ((SharpClipboard)sender!).MonitorClipboard = true;
-
-                            GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new HistoryItem() { ClipboardText = tempStr, DetectedRule = firstDetectedRule.RuleDetectPattern!, AddTime = DateTime.Now });
-                        }
-                        else
-                        {
-                            GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new HistoryItem() { ClipboardText = tempStr, DetectedRule = "无", AddTime = DateTime.Now });
+                            var firstDetectedRule = GlobalDataHelper.appConfig!.RuleItems.Where(r => r.RuleEnabled == true).FirstOrDefault(r => Regex.IsMatch(tempStr, r.RuleDetectPattern!));
+                            if (firstDetectedRule != null)
+                            {
+                                firstDetectedRule.RuleDetectionCount++;
+                                string res = Regex.Replace(tempStr, firstDetectedRule.RuleReplacePattern!, firstDetectedRule.RuleReplaceText!);
+                                GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new HistoryItem() { ClipboardText = tempStr, DetectedRule = firstDetectedRule.RuleDetectPattern!, AddTime = DateTime.Now });
+                                System.Windows.Clipboard.SetText(res);
+                            }
+                            else
+                            {
+                                GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new HistoryItem() { ClipboardText = tempStr, DetectedRule = "无", AddTime = DateTime.Now });
+                            }
                         }
                     }
                 }
