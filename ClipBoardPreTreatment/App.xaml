@@ -42,6 +42,7 @@
                 <tb:TaskbarIcon.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnabledRuleCount}" HeaderStringFormat="全局启用【{0}】" IsCheckable="True" IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable}"/>
+                        <MenuItem Header="窗口置顶" IsCheckable="True" IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=WindowTopmost}"/>
                         <MenuItem Header="历史查看器" Command="{Binding ShowHistoryWindowCommand}" InputGestureText="左键单击">
                             <MenuItem.Icon>
                                 <Path VerticalAlignment="Center" HorizontalAlignment="Center" Fill="#292d32" Stretch="Uniform" Data="{StaticResource HistoryGeometry}"/>

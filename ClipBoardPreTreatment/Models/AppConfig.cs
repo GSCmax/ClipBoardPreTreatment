@@ -31,6 +31,13 @@ namespace ClipBoardPreTreatment.Models
         partial void OnGlobalEnableChanged(bool value) => ClipboardHelper.sharpClipboard!.MonitorClipboard = value;
 
         /// <summary>
+        /// 窗口置顶
+        /// </summary>
+        [ObservableProperty]
+        [property: JsonProperty]
+        private bool windowTopmost = false;
+
+        /// <summary>
         /// 全局匹配次数
         /// </summary>
         public int GlobalRuleDetectionCount => RuleItems.Sum(item => item.RuleDetectionCount);
