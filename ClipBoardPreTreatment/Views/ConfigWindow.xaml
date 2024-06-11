@@ -31,9 +31,10 @@
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="启用" Width="auto" Binding="{Binding RuleEnabled, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False"/>
                 <DataGridTextColumn Header="命中" Width="auto" Binding="{Binding RuleDetectionCount, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False" IsReadOnly="True"/>
-                <DataGridTextColumn Header="匹配规则（正则）" Width="3*" Binding="{Binding RuleDetectPattern, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
-                <DataGridTextColumn Header="替换规则（正则）" Width="3*" Binding="{Binding RuleReplacePattern, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
-                <DataGridTextColumn Header="替换文本" Width="2*" Binding="{Binding RuleReplaceText, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="匹配规则（正则）" Width="*" Binding="{Binding RuleDetectPattern, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <DataGridTextColumn Header="替换规则（正则）" Width="*" Binding="{Binding RuleReplacePattern, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                <DataGridTextColumn Header="替换文本" Width="100" Binding="{Binding RuleReplaceText, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="备注" Width="100" Binding="{Binding RuleRemark, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1" Margin="10,0,10,10" LastChildFill="False">

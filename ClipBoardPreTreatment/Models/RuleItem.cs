@@ -58,5 +58,12 @@ namespace ClipBoardPreTreatment.Models
         [ObservableProperty]
         [property: JsonProperty]
         private string? ruleReplaceText = "可空";
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [ObservableProperty]
+        [property: JsonProperty]
+        private string? ruleRemark = "可空";
     }
 }
