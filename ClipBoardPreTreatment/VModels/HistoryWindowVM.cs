@@ -30,7 +30,10 @@ namespace ClipBoardPreTreatment.VModels
         private void CopyItem()
         {
             if (SelectedHistoryItem != null)
-                System.Windows.Clipboard.SetText(SelectedHistoryItem.ClipboardText);
+            {
+                try { System.Windows.Clipboard.SetText(SelectedHistoryItem.ClipboardText); }
+                catch { return; }
+            }
         }
     }
 }

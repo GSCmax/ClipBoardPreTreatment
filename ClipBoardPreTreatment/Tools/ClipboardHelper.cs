@@ -43,7 +43,8 @@ namespace ClipBoardPreTreatment.Tools
                                 firstDetectedRule.RuleDetectionCount++;
                                 string res = Regex.Replace(tempStr, firstDetectedRule.RuleReplacePattern!, firstDetectedRule.RuleReplaceText!);
                                 GlobalDataHelper.appHistory!.HistoryItems.Insert(0, new HistoryItem() { ClipboardText = tempStr, DetectedRule = firstDetectedRule.RuleDetectPattern!, AddTime = DateTime.Now });
-                                System.Windows.Clipboard.SetText(res);
+                                try { System.Windows.Clipboard.SetText(res); }
+                                catch { return; }
                             }
                             else
                             {

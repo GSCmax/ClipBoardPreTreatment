@@ -28,12 +28,16 @@
             <DataGrid.InputBindings>
                 <KeyBinding Command="{Binding DeleteItemCommand}" Key="Delete"/>
                 <KeyBinding Command="{Binding CopyItemCommand}" Key="C" Modifiers="Ctrl"/>
-                <MouseBinding Command="{Binding CopyItemCommand}" MouseAction="LeftDoubleClick"/>
             </DataGrid.InputBindings>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="ToolTip" Value="{Binding}"/>
+                    <Setter Property="MaxHeight" Value="34"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="文本" Width="*" Binding="{Binding ClipboardText}"/>
                 <DataGridTextColumn Header="命中规则" Width="100" Binding="{Binding DetectedRule}"/>
-                <DataGridTextColumn Header="时间" Width="100" Binding="{Binding AddTime, StringFormat='yyyy.MM.dd HH:mm:ss'}"/>
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1" Margin="10,0,10,10" LastChildFill="False">

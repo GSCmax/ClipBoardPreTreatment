@@ -26,5 +26,11 @@ namespace ClipBoardPreTreatment.Models
         [ObservableProperty]
         [property: JsonProperty]
         private DateTime addTime;
+
+        /// <summary>
+        /// 重写ToString()方法
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"文本：⤵\n{ClipboardText}\n\n匹配规则：{DetectedRule}\n添加时间：{AddTime}";
     }
 }

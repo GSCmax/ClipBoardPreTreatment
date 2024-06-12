@@ -28,6 +28,11 @@
             <DataGrid.InputBindings>
                 <KeyBinding Command="{Binding CopyItemCommand}" Key="C" Modifiers="Ctrl"/>
             </DataGrid.InputBindings>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="MaxHeight" Value="34"/>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="启用" Width="auto" Binding="{Binding RuleEnabled, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False"/>
                 <DataGridTextColumn Header="命中" Width="auto" Binding="{Binding RuleDetectionCount, UpdateSourceTrigger=PropertyChanged}" CanUserResize="False" IsReadOnly="True"/>
