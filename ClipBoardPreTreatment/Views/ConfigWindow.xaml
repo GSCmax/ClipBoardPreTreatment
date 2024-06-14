@@ -30,6 +30,11 @@
             </DataGrid.InputBindings>
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
+                    <Setter Property="ToolTip">
+                        <Setter.Value>
+                            <TextBlock Text="{Binding Converter={StaticResource RISC}}" MaxWidth="600" TextWrapping="Wrap"/>
+                        </Setter.Value>
+                    </Setter>
                     <Setter Property="MaxHeight" Value="34"/>
                 </Style>
             </DataGrid.RowStyle>

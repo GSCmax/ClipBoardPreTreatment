@@ -1,4 +1,5 @@
-﻿using ClipBoardPreTreatment.Tools;
+﻿using ClipBoardPreTreatment.Models;
+using ClipBoardPreTreatment.Tools;
 using Hardcodet.Wpf.TaskbarNotification;
 using System.Diagnostics;
 using System.Globalization;
@@ -38,7 +39,7 @@ namespace ClipBoardPreTreatment
     }
 
     /// <summary>
-    /// 用于Tooltip的启用/停用显示
+    /// 用于任务栏图标Tooltip的启用/停用显示
     /// </summary>
     public class Bool2StringConverter : IValueConverter
     {
@@ -61,6 +62,25 @@ namespace ClipBoardPreTreatment
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return (bool)value ? ((string)parameter).Split('|')[0] : ((string)parameter).Split('|')[1];
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// 用于配置管理器规则的Tooltip显示
+    /// </summary>
+    public class RuleItemSelectConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is RuleItem)
+                return value;
+            else
+                return "空";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

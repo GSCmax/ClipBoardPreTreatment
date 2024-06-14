@@ -65,5 +65,11 @@ namespace ClipBoardPreTreatment.Models
         [ObservableProperty]
         [property: JsonProperty]
         private string? ruleRemark = "可空";
+
+        /// <summary>
+        /// 重写ToString()方法
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => $"匹配规则：{RuleDetectPattern}\n替换规则：{RuleReplacePattern}\n替换文本：{RuleReplaceText}\n备　　注：{RuleRemark}";
     }
 }
