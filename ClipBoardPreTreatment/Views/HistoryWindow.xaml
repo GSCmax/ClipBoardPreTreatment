@@ -46,7 +46,7 @@
             </DataGrid.CellStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="文本" Width="*" Binding="{Binding ClipboardText}"/>
-                <DataGridTextColumn Header="命中规则" Width="100" Binding="{Binding DetectedRule}"/>
+                <DataGridTextColumn Header="匹配规则" Width="100" Binding="{Binding DetectedRule}"/>
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1" Margin="10,0,10,10" LastChildFill="False">
