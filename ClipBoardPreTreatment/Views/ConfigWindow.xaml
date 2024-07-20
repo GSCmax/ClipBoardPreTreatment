@@ -23,7 +23,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleItems, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedRuleItem}"
-                  AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" Unloaded="DataGrid_Unloaded" SelectionMode="Single"
+                  AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeRows="False" Unloaded="DataGrid_Unloaded" SelectionMode="Single" VerticalScrollBarVisibility="Visible"
                   SelectionUnit="FullRow" HeadersVisibility="Column" AlternatingRowBackground="AliceBlue" FontSize="12" BorderBrush="#707070">
             <DataGrid.InputBindings>
                 <KeyBinding Command="{Binding CopyItemCommand}" Key="C" Modifiers="Ctrl"/>
@@ -48,10 +48,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1" Margin="10,0,10,10" LastChildFill="False">
-            <CheckBox DockPanel.Dock="Left" Margin="-1,0,0,0" Content="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnabledRuleCount}" ContentStringFormat="全局启用【{0}】" VerticalAlignment="Center" VerticalContentAlignment="Center"  IsChecked="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalEnable}"/>
-            <TextBlock DockPanel.Dock="Left" Margin="10,0,0,0" Text="匹配文本长度限制" VerticalAlignment="Center"/>
+            <TextBlock DockPanel.Dock="Left" Text="匹配文本长度限制" VerticalAlignment="Center"/>
             <TextBox DockPanel.Dock="Left" Margin="5,0,0,0" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=DetectTextLengthLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" Width="50" Height="18" FontSize="13" BorderBrush="#707070"/>
-            <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=GlobalRuleDetectionCount, StringFormat=全局命中【{0}】}"/>
         </DockPanel>
     </Grid>
 </Window>

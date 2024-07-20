@@ -2,13 +2,14 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFrameworks>net8.0-windows;net6.0-windows;net472</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+    <LangVersion>12.0</LangVersion>
     <Authors>GSC</Authors>
-    <Version>1.0.0.8</Version>
+    <Version>1.0.0.9</Version>
     <Copyright>Copyright © GSC 2024</Copyright>
     <RepositoryUrl>https://github.com/GSCmax/ClipBoardPreTreatment</RepositoryUrl>
   </PropertyGroup>
