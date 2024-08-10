@@ -52,7 +52,7 @@
         <DockPanel Grid.Row="1" Margin="10,0,10,10" LastChildFill="False">
             <TextBlock DockPanel.Dock="Left" Text="历史记录保存数量" VerticalAlignment="Center"/>
             <TextBox DockPanel.Dock="Left" Margin="5,0,0,0" Text="{Binding Source={x:Static tools:GlobalDataHelper.appHistory}, Path=HistorySaveCountLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" Width="50" Height="18" FontSize="13" BorderBrush="#707070"/>
-            <TextBlock DockPanel.Dock="Right" Text="{Binding Source={x:Static tools:GlobalDataHelper.appHistory}, Path=HistoryCount, StringFormat=历史记录数量：{0}}"/>
+            <TextBlock DockPanel.Dock="Right" Text="{Binding Source={x:Static tools:GlobalDataHelper.appHistory}, Path=HistoryCount, StringFormat=历史记录数量【{0}】}"/>
         </DockPanel>
     </Grid>
 </Window>
