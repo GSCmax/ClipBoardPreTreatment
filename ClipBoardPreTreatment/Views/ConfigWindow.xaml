@@ -11,8 +11,8 @@
         Icon="{Binding Source={x:Static tools:GlobalDataHelper.isLightMode}, Converter={StaticResource B2RC}, ConverterParameter='/ClipBoardPreTreatment;component/Resources/icon_small_origin.ico|/ClipBoardPreTreatment;component/Resources/icon_small_white.ico'}"
         Topmost="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=WindowTopmost}"
         WindowStartupLocation="CenterScreen"
-        Height="350" Width="600"
-        MinHeight="350" MinWidth="600"
+        Height="500" Width="600"
+        MinHeight="300" MinWidth="600"
         FontSize="14">
     <Window.DataContext>
         <vms:ConfigWindowVModel/>
@@ -48,9 +48,9 @@
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1" Margin="10,0,10,10" LastChildFill="False">
-            <TextBlock DockPanel.Dock="Left" Text="匹配文本长度限制" VerticalAlignment="Center"/>
-            <TextBox DockPanel.Dock="Left" Margin="5,0,0,0" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=DetectTextLengthLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" Width="50" Height="18" FontSize="13" BorderBrush="#707070"/>
-            <TextBlock DockPanel.Dock="Right" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleCount, StringFormat=规则数量【{0}】}"/>
+            <TextBlock DockPanel.Dock="Left" Text="匹配文本长度限制 " VerticalAlignment="Center"/>
+            <TextBox DockPanel.Dock="Left" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=DetectTextLengthLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" Width="50" Height="18" FontSize="13" BorderBrush="#707070"/>
+            <TextBlock DockPanel.Dock="Right" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleCount, StringFormat=规则数量 {0}}"/>
         </DockPanel>
     </Grid>
 </Window>

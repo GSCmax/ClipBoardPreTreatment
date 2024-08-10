@@ -30,7 +30,7 @@
                             LeftClickCommand="{Binding ShowHistoryWindowCommand}"
                             DoubleClickCommand="{Binding ShowConfigWindowCommand}">
                 <tb:TaskbarIcon.ToolTipText>
-                    <MultiBinding StringFormat="剪切板文本预处理工具 v{0}&#x0a;&#x0a;全局{1}【{2}】&#x0a;全局命中【{3}】">
+                    <MultiBinding StringFormat="剪切板文本预处理工具 v{0}&#x0a;&#x0a;全局{1} {2}&#x0a;全局命中 {3}">
                         <Binding Source="{x:Static tools:GlobalDataHelper.appVersion}"/>
                         <Binding Source="{x:Static tools:GlobalDataHelper.appConfig}" Path="GlobalEnable" Converter="{StaticResource B2SC}"/>
                         <Binding Source="{x:Static tools:GlobalDataHelper.appConfig}" Path="GlobalEnabledRuleCount"/>
