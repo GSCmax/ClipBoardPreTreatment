@@ -76,6 +76,6 @@ namespace ClipBoardPreTreatment.Models
         /// <summary>
         /// 规则数量
         /// </summary>
-        public int RuleCount => RuleItems.Count;
+        public int RuleCount => RuleItems.Count(r => r.RuleEnabled == true);
     }
 }

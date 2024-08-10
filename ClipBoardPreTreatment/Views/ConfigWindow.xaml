@@ -7,7 +7,7 @@
         xmlns:vms="clr-namespace:ClipBoardPreTreatment.VModels"
         xmlns:tools="clr-namespace:ClipBoardPreTreatment.Tools"
         mc:Ignorable="d"
-        Title="剪切板文本预处理工具 配置管理器"
+        Title="剪切板文本预处理工具 规则管理器"
         Icon="{Binding Source={x:Static tools:GlobalDataHelper.isLightMode}, Converter={StaticResource B2RC}, ConverterParameter='/ClipBoardPreTreatment;component/Resources/icon_small_origin.ico|/ClipBoardPreTreatment;component/Resources/icon_small_white.ico'}"
         Topmost="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=WindowTopmost}"
         WindowStartupLocation="CenterScreen"
@@ -50,7 +50,7 @@
         <DockPanel Grid.Row="1" Margin="10,0,10,10" LastChildFill="False">
             <TextBlock DockPanel.Dock="Left" Text="匹配文本长度限制 " VerticalAlignment="Center"/>
             <TextBox DockPanel.Dock="Left" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=DetectTextLengthLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Center" Width="50" Height="18" FontSize="13" BorderBrush="#707070"/>
-            <TextBlock DockPanel.Dock="Right" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleCount, StringFormat=规则数量 {0}}"/>
+            <TextBlock DockPanel.Dock="Right" Text="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=RuleCount, StringFormat=启用规则数量 {0}}"/>
         </DockPanel>
     </Grid>
 </Window>
