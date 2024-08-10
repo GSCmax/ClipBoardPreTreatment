@@ -10,10 +10,11 @@ namespace ClipBoardPreTreatment.Models
     {
         public AppConfig()
         {
-            RuleItems.ListChanged += (object? _, ListChangedEventArgs _) =>
+            RuleItems.ListChanged += (_, _) =>
             {
                 OnPropertyChanged(nameof(GlobalRuleDetectionCount));
                 OnPropertyChanged(nameof(GlobalEnabledRuleCount));
+                OnPropertyChanged(nameof(RuleCount));
             };
         }
 
@@ -71,5 +72,10 @@ namespace ClipBoardPreTreatment.Models
         /// </summary>
         [property: JsonProperty]
         public BindingList<RuleItem> RuleItems { get; set; } = [];
+
+        /// <summary>
+        /// 规则数量
+        /// </summary>
+        public int RuleCount => RuleItems.Count;
     }
 }

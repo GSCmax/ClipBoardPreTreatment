@@ -8,6 +8,14 @@ namespace ClipBoardPreTreatment.Models
     [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
     internal partial class AppHistory : ObservableValidator
     {
+        public AppHistory()
+        {
+            HistoryItems.ListChanged += (_, _) =>
+            {
+                OnPropertyChanged(nameof(HistoryCount));
+            };
+        }
+
         /// <summary>
         /// 历史记录文件存储路径
         /// </summary>
@@ -26,6 +34,11 @@ namespace ClipBoardPreTreatment.Models
         /// </summary>
         [property: JsonProperty]
         public BindingList<HistoryItem> HistoryItems { get; set; } = [];
+
+        /// <summary>
+        /// 历史记录数量
+        /// </summary>
+        public int HistoryCount => HistoryItems.Count;
 
         /// <summary>
         /// 序列化时自动截断
