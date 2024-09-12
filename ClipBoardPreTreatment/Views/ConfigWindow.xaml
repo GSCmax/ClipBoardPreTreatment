@@ -10,7 +10,6 @@
         Title="剪切板文本预处理工具 规则管理器"
         Icon="{Binding Source={x:Static tools:GlobalDataHelper.isLightMode}, Converter={StaticResource B2RC}, ConverterParameter='/ClipBoardPreTreatment;component/Resources/icon_small_origin.ico|/ClipBoardPreTreatment;component/Resources/icon_small_white.ico'}"
         Topmost="{Binding Source={x:Static tools:GlobalDataHelper.appConfig}, Path=WindowTopmost}"
-        WindowStartupLocation="CenterScreen"
         Height="500" Width="600"
         MinHeight="300" MinWidth="600"
         FontSize="14">

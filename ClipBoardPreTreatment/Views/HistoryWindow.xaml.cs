@@ -12,6 +12,18 @@ namespace ClipBoardPreTreatment.Views
         private HistoryWindow()
         {
             InitializeComponent();
+
+            // 获取工作区域的宽度和高度
+            double screenWidth = SystemParameters.WorkArea.Width;
+            double screenHeight = SystemParameters.WorkArea.Height;
+
+            // 设置窗口的宽度和高度
+            double windowWidth = Width;
+            double windowHeight = Height;
+
+            // 计算窗口的左边距和上边距，使其位于右下角
+            Left = screenWidth - windowWidth;
+            Top = screenHeight - windowHeight;
         }
 
         public static HistoryWindow Instance
