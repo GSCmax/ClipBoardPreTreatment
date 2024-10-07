@@ -27,6 +27,7 @@
             <DataGrid.InputBindings>
                 <KeyBinding Command="{Binding DeleteItemCommand}" Key="Delete"/>
                 <KeyBinding Command="{Binding CopyItemCommand}" Key="C" Modifiers="Ctrl"/>
+                <MouseBinding Command="{Binding CopyItemCommand}" MouseAction="LeftDoubleClick"/>
             </DataGrid.InputBindings>
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
